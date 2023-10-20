@@ -16,14 +16,24 @@ There are many ways to accomplish this task but here's a simple algorithm:
 
 Examples:
 
-sort([4,1,6,3,1,7]); // [1, 1, 3, 4, 6, 7]
-sort([0, 1, -3]); // [-3, 0, 1]
-sort([]); // []
+
 ***********************************************************************/
 
 function sort(nums, sorted = []) {
-    // Your code here 
+    if (nums.length === 0) return sorted;
+    let lowest = Infinity;
+    for (let i = 0; i < nums.length; i++) {
+        if (lowest > nums[i]) lowest = nums[i];
+    }
+    sorted.push(lowest);
+    nums.splice(nums.indexOf(lowest), 1)
+    return sort(nums, sorted);
+
 }
+
+console.log(sort([4,1,6,3,1,7])); // [1, 1, 3, 4, 6, 7]
+console.log(sort([0, 1, -3])); // [-3, 0, 1]
+console.log(sort([])); // []
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 module.exports = sort;
